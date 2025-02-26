@@ -25,6 +25,7 @@ const config: Config = {
         "c-light-gray": "rgba(244, 247, 250,1)",
         "c-light-ash": "rgba(245, 247, 250,1)",
         "c-dark-ash": "rgba(237, 241, 247,1)",
+        "c-text": "rgba(139, 163, 203,1)",
       },
     },
   },
