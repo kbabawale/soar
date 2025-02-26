@@ -8,6 +8,7 @@ export type Menu = {
 };
 
 export type CardType = "dark" | "light";
+export type TransactionType = "PayPal" | "Card" | "Cash";
 
 export type CardProps = {
   balance: number;
@@ -16,4 +17,12 @@ export type CardProps = {
   cardNumber: number;
   cardType: CardType;
   customStyles?: CSSProperties;
+};
+
+export type TransactionProps = {
+  type: TransactionType;
+  narration: string;
+  amount: number;
+  debit: boolean;
+  createdAt: string;
 };

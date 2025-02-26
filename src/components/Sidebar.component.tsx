@@ -1,9 +1,8 @@
 import { MENUITEMS } from "../util/data";
 import SideMenuItem from "./Menu.component";
 
+const _menuitems = MENUITEMS;
 function Sidebar() {
-  const _menuitems = MENUITEMS;
-
   return (
     <div className="flex flex-col w-full pt-5 space-y-1">
       {_menuitems.map((object, index) => (

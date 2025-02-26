@@ -41,4 +41,15 @@ export class UtilFunction {
     });
     return cNumber.join("");
   };
+
+  static formatDate = (input: string): string => {
+    if (!input) return "01 January, 2025";
+    const today = new Date(input);
+
+    return today.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
 }

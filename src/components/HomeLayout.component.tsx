@@ -4,7 +4,7 @@ import Topnav from "./Topnav.component";
 
 function HomeLayout() {
   return (
-    <div className="bg-c-light-gray w-screen h-screen absolute">
+    <div className="w-screen absolute">
       {/* Sidebar */}
       <section className="fixed w-[300px] h-screen bg-white border-r border-[#E6EFF5]">
         <Link to="/" title="Homepage">
@@ -16,7 +16,7 @@ function HomeLayout() {
         <Sidebar />
       </section>
 
-      <section className="fixed w-[calc(100%-300px)] right-0">
+      <section className="bg-c-light-gray absolute w-[calc(100%-300px)] right-0">
         <Topnav />
 
         <main>
