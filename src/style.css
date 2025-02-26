@@ -11,8 +11,27 @@
     .heading-1{
         @apply font-extrabold text-2xl text-c-primary;
     }
+    
+    .heading-2{
+        @apply font-semibold text-xl text-c-primary;
+    }
+    .heading-3{
+        @apply font-semibold text-lg text-c-primary;
+    }
 
     a, Link{
         @apply hover:brightness-[110%] active:brightness-[80%];
     }
+}
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+   /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+  }
 }

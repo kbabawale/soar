@@ -1,4 +1,4 @@
-import { MENUITEMS } from "../util/menuItems";
+import { MENUITEMS } from "../util/data";
 import SideMenuItem from "./Menu.component";
 
 function Sidebar() {

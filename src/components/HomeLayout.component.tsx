@@ -17,10 +17,8 @@ function HomeLayout() {
       </section>
 
       <section className="fixed w-[calc(100%-300px)] right-0">
-        {/* top nav */}
         <Topnav />
 
-        {/* Body */}
         <main>
           <Outlet />
         </main>
