@@ -15,6 +15,7 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       { path: "/settings", element: <Settings /> },
+      { path: "*", element: <h1>Error - Page not found</h1> },
     ],
   },
 

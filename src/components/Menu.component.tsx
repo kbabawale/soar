@@ -1,0 +1,40 @@
+import { Link, useLocation } from "react-router-dom";
+import { Menu } from "../util/model";
+
+const SideMenuItem = ({ filledIcon, unfilledIcon, label, route }: Menu) => {
+  const location = useLocation();
+  const currentRouteActive = (currentRoute: string): boolean => {
+    if (currentRoute === location.pathname) return true;
+    return false;
+  };
+
+  const isCurrentRoute = currentRouteActive(route);
+
+  return (
+    <Link to={route} title={label}>
+      <div className="flex items-center h-14">
+        <div className="w-[20%]">
+          {isCurrentRoute && (
+            <div className="w-[5px] h-10 rounded-r bg-c-secondary"></div>
+          )}
+        </div>
+        <div className="w-[20%]">
+          <img
+            src={`${isCurrentRoute ? filledIcon : unfilledIcon}.svg`}
+            alt={label}
+            aria-label={label}
+          />
+        </div>
+        <span
+          className={`text-lg font-medium ${
+            isCurrentRoute ? "text-c-secondary" : "text-c-light"
+          } `}
+        >
+          {label}
+        </span>
+      </div>
+    </Link>
+  );
+};
+
+export default SideMenuItem;

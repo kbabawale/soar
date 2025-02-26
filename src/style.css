@@ -4,7 +4,15 @@
 @config "../tailwind.config.ts";
 
 @layer base{
-    *{
-        @apply font-inter;
+    body{
+        @apply font-inter text-base;
+    }
+
+    .heading-1{
+        @apply font-extrabold text-2xl text-c-primary;
+    }
+
+    a:hover, Link:hover{
+        @apply transition-colors;
     }
 }
