@@ -1,4 +1,5 @@
 import { CSSProperties, InputHTMLAttributes } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 export type Menu = {
   label: string;
@@ -55,10 +56,25 @@ export type FormElementProps = {
   error?: boolean;
   errorMessage?: string;
   onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
+  onChange?: (input: number | string) => void;
   type: FormElementType;
   extraTypeAttributes?: InputHTMLAttributes<unknown>[];
   label: string;
   customStyles?: CSSProperties;
   options?: DropdownOptions[];
   disabled?: boolean;
+  registerValidation?: UseFormRegisterReturn;
+};
+
+export type EditProfileFormType = {
+  username: string;
+  email: string;
+  password: string;
+  country: string;
+  city: string;
+  dateOfBirth: string;
+  permanentAddress: string;
+  presentAddress: string;
+  postalCode: string;
+  name: string;
 };

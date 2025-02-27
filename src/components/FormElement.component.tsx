@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UtilFunction } from "../util/functions";
 import { DropdownOptions, FormElementProps } from "../util/model";
 
@@ -12,8 +12,10 @@ const FormElement = ({
   errorMessage,
   placeholder,
   extraTypeAttributes,
+  registerValidation,
   options,
   onKeyDown,
+  onChange,
 }: FormElementProps) => {
   const isDropdown = type === "dropdown" ? true : false;
   const extraAttributes = UtilFunction.flattenArrayToObj(extraTypeAttributes);
@@ -22,6 +24,10 @@ const FormElement = ({
     useState<boolean>(false);
   const [selectedDropdownOption, setSelectedDropdownOption] =
     useState<DropdownOptions>();
+
+  useEffect(() => {
+    if (selectedDropdownOption) onChange?.(selectedDropdownOption.value);
+  });
 
   return (
     <div className={`flex flex-col`}>
@@ -33,6 +39,7 @@ const FormElement = ({
           id={id}
           placeholder={placeholder}
           style={customStyles}
+          {...registerValidation}
           disabled={disabled}
           onKeyDown={onKeyDown}
           {...extraAttributes}
