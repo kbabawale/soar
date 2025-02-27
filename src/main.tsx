@@ -2,9 +2,11 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import Settings from "./pages/Settings";
 import HomeLayout from "./components/HomeLayout.component";
 import NotFound from "./components/NotFound.component";
+import React from "react";
+
+const _Settings = React.lazy(() => import("./pages/Settings"));
 
 const router = createBrowserRouter([
   {
@@ -15,7 +17,16 @@ const router = createBrowserRouter([
         index: true,
         element: <Dashboard />,
       },
-      { path: "/settings", element: <Settings /> },
+      {
+        path: "/settings",
+        element: (
+          <React.Suspense
+            fallback={<span className="text-sm text-c-light">Loading...</span>}
+          >
+            <_Settings />
+          </React.Suspense>
+        ),
+      },
       { path: "*", element: <NotFound /> },
     ],
   },

@@ -4,6 +4,7 @@ import { useSidebarStore } from "../store/sidebar.store";
 
 const SideMenuItem = ({ filledIcon, unfilledIcon, label, route }: Menu) => {
   const setOpen = useSidebarStore((state) => state.toggleFn);
+  const isMobile = useSidebarStore((state) => state.isMobile);
   const location = useLocation();
   const currentRouteActive = (currentRoute: string): boolean => {
     if (currentRoute === location.pathname) return true;
@@ -13,7 +14,13 @@ const SideMenuItem = ({ filledIcon, unfilledIcon, label, route }: Menu) => {
   const isCurrentRoute = currentRouteActive(route);
 
   return (
-    <Link onClick={setOpen} to={route} title={label}>
+    <Link
+      onClick={() => {
+        if (isMobile) setOpen();
+      }}
+      to={route}
+      title={label}
+    >
       <div aria-label={label} className="flex items-center h-14">
         <div className="hidden md:block w-[20%]">
           {isCurrentRoute && (

@@ -1,8 +1,17 @@
 import { Link, Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar.component";
 import Topnav from "./Topnav.component";
+import { useEffect } from "react";
+import { useSidebarStore } from "../store/sidebar.store";
 
 function HomeLayout() {
+  const setMobile = useSidebarStore((state) => state.setIsMobile);
+  useEffect(() => {
+    const [width, height] = [window.screen.width, window.screen.height];
+    const isMobile = Math.min(width, height) < 768;
+    setMobile(isMobile);
+  });
+
   return (
     <div className="w-screen md:absolute">
       {/* Sidebar */}
