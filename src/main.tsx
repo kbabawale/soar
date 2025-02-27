@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import HomeLayout from "./components/HomeLayout.component";
+import NotFound from "./components/NotFound.component";
 
 const router = createBrowserRouter([
   {
@@ -15,11 +16,11 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       { path: "/settings", element: <Settings /> },
-      { path: "*", element: <h1>Error - Page not found</h1> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 
-  { path: "*", element: <h1>Error - Page not found</h1> },
+  { path: "*", element: <NotFound /> },
 ]);
 
 createRoot(document.getElementById("root")!).render(
