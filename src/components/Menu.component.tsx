@@ -13,7 +13,7 @@ const SideMenuItem = ({ filledIcon, unfilledIcon, label, route }: Menu) => {
   return (
     <Link to={route} title={label}>
       <div className="flex items-center h-14">
-        <div className="w-[20%]">
+        <div className="hidden md:block w-[20%]">
           {isCurrentRoute && (
             <div className="w-[5px] h-10 rounded-r bg-c-secondary"></div>
           )}
@@ -26,7 +26,7 @@ const SideMenuItem = ({ filledIcon, unfilledIcon, label, route }: Menu) => {
           />
         </div>
         <span
-          className={`text-lg font-medium ${
+          className={`pl-10 md:pl-0 text-lg font-medium ${
             isCurrentRoute ? "text-c-secondary" : "text-c-light"
           } `}
         >
