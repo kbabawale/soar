@@ -4,6 +4,7 @@ import { DropdownOptions, FormElementProps } from "../util/model";
 
 const FormElement = ({
   label,
+  id,
   type,
   error,
   disabled,
@@ -24,9 +25,12 @@ const FormElement = ({
 
   return (
     <div className={`flex flex-col`}>
-      <span className="text-c-secondary">{label}</span>
+      <label htmlFor={id} className="text-c-secondary">
+        {label}
+      </label>
       {!isDropdown ? (
         <input
+          id={id}
           placeholder={placeholder}
           style={customStyles}
           disabled={disabled}

@@ -102,6 +102,7 @@ function Dashboard() {
                   className="text-c-alt w-[45%] text-sm px-5 outline-0"
                 />
                 <button
+                  onClick={() => alert("Sent")}
                   className="text-white text-sm bg-c-secondary w-[50%] max-w-[100px] rounded-3xl flex items-center justify-evenly p-2"
                   type="submit"
                 >

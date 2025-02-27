@@ -1,10 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar.component";
 import { useSidebarStore } from "../store/sidebar.store";
 
 function Topnav() {
   const isOpen = useSidebarStore((state) => state.isOpen);
   const setOpen = useSidebarStore((state) => state.toggleFn);
+
+  const location = useLocation();
+
+  const capitalizeFirstLetter = (val: string) => {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+  };
+
+  const title =
+    capitalizeFirstLetter(location.pathname.replace("/", "")) || "Dashboard";
+
   return (
     <div className="">
       {!isOpen && (
@@ -16,7 +26,7 @@ function Topnav() {
               src="/menu.svg"
             />
             <span className="grow md:grow-0 text-center md:text-left  text-3xl font-semibold text-c-primary">
-              Overview
+              {title}
             </span>
             <div className="flex items-center md:space-x-6">
               <input
@@ -26,7 +36,12 @@ function Topnav() {
                 type="search"
               />
 
-              <Link className="hidden md:block" to="/" title="Preferences">
+              <Link
+                onClick={() => alert("Preferences")}
+                className="hidden md:block"
+                to="/"
+                title="Preferences"
+              >
                 <div
                   aria-label="Preferences"
                   className="flex items-center justify-center rounded-full bg-c-light-ash w-[50px] h-[50px]"
@@ -35,7 +50,12 @@ function Topnav() {
                 </div>
               </Link>
 
-              <Link className="hidden md:block" to="/" title="Notifications">
+              <Link
+                onClick={() => alert("Notifications")}
+                className="hidden md:block"
+                to="/"
+                title="Notifications"
+              >
                 <div
                   aria-label="notification"
                   className="flex items-center justify-center rounded-full bg-c-light-ash w-[50px] h-[50px]"
@@ -44,7 +64,7 @@ function Topnav() {
                 </div>
               </Link>
 
-              <Link to="/" title="Profile">
+              <Link to="/settings" title="Profile">
                 <div
                   aria-label="Profile"
                   className="flex items-center justify-center rounded-full bg-c-light-ash w-[60px] h-[60px]"
