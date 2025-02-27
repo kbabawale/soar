@@ -19,7 +19,7 @@ function HomeLayout() {
       <section className="bg-c-light-gray absolute w-full md:w-[calc(100%-300px)] md:right-0">
         <Topnav />
 
-        <main className="hidden">
+        <main className="">
           <Outlet />
         </main>
       </section>

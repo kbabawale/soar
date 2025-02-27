@@ -4,7 +4,7 @@ const EditProfile = () => {
   return (
     <form>
       <div className="flex flex-col">
-        <div className="flex">
+        <div className="flex flex-col justify-center items-center md:flex md:flex-row md:items-start">
           {/* Avatar */}
           <div className="flex">
             <img
@@ -19,7 +19,7 @@ const EditProfile = () => {
           </div>
 
           {/* Form */}
-          <div className="grow grid grid-cols-2 gap-5 ms-10 px-5 ">
+          <div className="flex flex-col space-y-5 grow md:grid md:grid-cols-2 md:gap-5 md:ms-10 px-5 ">
             <FormElement
               type="text"
               label="Your Name"
@@ -91,7 +91,7 @@ const EditProfile = () => {
         <button
           title="Submit"
           type="button"
-          className="mt-8 bg-c-secondary hover:bg-c-secondary/90 cursor-pointer text-white py-3 px-20 rounded-xl self-end"
+          className="mt-8 bg-c-secondary hover:bg-c-secondary/90 cursor-pointer text-white py-3 px-20 rounded-xl md:self-end"
         >
           Save
         </button>

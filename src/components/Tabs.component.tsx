@@ -10,13 +10,13 @@ const TabItem = ({ active, label, click }: TabItemProps) => {
         active
           ? "border-b-3 border-b-c-primary cursor-default"
           : "cursor-pointer border-0"
-      } flex flex-col h-[35px] px-3 transition-[border] ease-in-out`}
+      } flex flex-col justify-center h-[50px] md:h-[35px] px-3 transition-[border] ease-in-out`}
     >
       <span
         title={label}
         className={`${
           active ? "text-c-primary" : "text-c-alt hover:text-c-primary"
-        } text-base font-medium`}
+        } text-sm md:text-base text-center font-medium`}
       >
         {label}
       </span>
@@ -38,7 +38,7 @@ const Tabs = ({ onSwitch }: TabsProps) => {
   };
 
   return (
-    <div className="flex border-b border-b-[#F4F5F7] items-center space-x-10">
+    <div className="flex border-b border-b-[#F4F5F7] items-center md:space-x-10">
       {tabs &&
         tabs.map((v) => (
           <TabItem
