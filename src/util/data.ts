@@ -82,14 +82,14 @@ export const CARDS: CardProps[] = [
   {
     balance: 1000,
     cardNumber: 2343234323454333,
-    cardType: "light",
+    cardType: "dark",
     expiryDate: new Date("05/12/2026").toISOString(),
     holder: "Tom Murphy",
   },
   {
     balance: 53030,
     cardNumber: 2343234323454333,
-    cardType: "light",
+    cardType: "dark",
     expiryDate: new Date("05/12/2026").toISOString(),
     holder: "Peter Drury",
   },

@@ -8,9 +8,14 @@ function HomeLayout() {
       {/* Sidebar */}
       <section className="hidden md:block fixed w-[300px] h-screen bg-white border-r border-[#E6EFF5]">
         <Link to="/" title="Homepage">
-          <div className="flex items-center justify-center space-x-4 py-7">
+          <div
+            tabIndex={0}
+            className="flex items-center justify-center space-x-4 py-7"
+          >
             <img src="/logo.svg" alt="Logo" aria-label="SOAR Logo" />
-            <span className="heading-1">Soar Task</span>
+            <span className="heading-1" aria-label="Soar Task">
+              Soar Task
+            </span>
           </div>
         </Link>
         <Sidebar />

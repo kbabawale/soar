@@ -1,6 +1,7 @@
 import { useState } from "react";
 import EditProfile from "../components/EditProfile.component";
 import Tabs from "../components/Tabs.component";
+import UnderConstruction from "../components/Construction.component";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState<number>(1);
@@ -15,9 +16,9 @@ const Settings = () => {
           {activeTab === 1 ? (
             <EditProfile />
           ) : activeTab === 2 ? (
-            <>Preferences</>
+            <UnderConstruction />
           ) : (
-            <>Security</>
+            <UnderConstruction />
           )}
         </div>
       </section>

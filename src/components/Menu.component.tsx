@@ -12,7 +12,7 @@ const SideMenuItem = ({ filledIcon, unfilledIcon, label, route }: Menu) => {
 
   return (
     <Link to={route} title={label}>
-      <div className="flex items-center h-14">
+      <div aria-label={label} className="flex items-center h-14">
         <div className="hidden md:block w-[20%]">
           {isCurrentRoute && (
             <div className="w-[5px] h-10 rounded-r bg-c-secondary"></div>
