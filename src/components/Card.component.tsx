@@ -14,7 +14,7 @@ const Card = ({
   return (
     <div
       style={customStyles}
-      className={`flex-none flex flex-col w-[350px] h-[240px] rounded-3xl ${
+      className={`flex-none flex flex-col w-[280px] h-[190px] md:w-[350px] md:h-[240px] rounded-3xl ${
         cardType === "dark"
           ? "bg-linear-to-r from-[#5B5A6F] to-[#000000]"
           : "bg-white"
@@ -27,7 +27,7 @@ const Card = ({
               Balance
             </span>
             <span
-              className={`text-xl ${
+              className={`text-base md:xl ${
                 cardType === "dark" ? "text-white" : "text-c-primary"
               } font-semibold font-lato`}
             >
@@ -39,7 +39,7 @@ const Card = ({
             alt="Card Chip"
           />
         </div>
-        <div className="flex mt-7 space-x-8">
+        <div className="flex mt-5 md:mt-7 space-x-8">
           <div className="flex flex-col">
             <span
               className={`text-xs ${
@@ -49,7 +49,7 @@ const Card = ({
               CARD HOLDER
             </span>
             <span
-              className={`text-base ${
+              className={`text-sm md:text-base ${
                 cardType === "dark" ? "text-white" : "text-c-primary"
               }  font-semibold font-lato`}
             >
@@ -65,7 +65,7 @@ const Card = ({
               VALID THRU
             </span>
             <span
-              className={`text-base ${
+              className={`text-sm md:text-base ${
                 cardType === "dark" ? "text-white" : "text-c-primary"
               }  font-semibold font-lato`}
             >
@@ -79,12 +79,12 @@ const Card = ({
           cardType === "dark"
             ? "bg-[#37363b]"
             : "bg-white border-t-1 border-t-[#DFEAF2]"
-        } mt-5 h-full rounded-b-3xl px-5 flex items-center justify-between`}
+        } mt-0 md:mt-5 h-full rounded-b-3xl px-5 flex items-center justify-between`}
       >
         <span
           className={`${
             cardType === "dark" ? "text-white" : "text-c-primary"
-          } font-lato font-semibold text-xl tracking-wider`}
+          } font-lato font-semibold text-base md:text-xl tracking-wider`}
         >
           {UtilFunction.formatCardNumber(
             UtilFunction.maskCardNumber(cardNumber)

@@ -12,11 +12,11 @@ function Dashboard() {
   const _transactions = TRANSACTIONS;
   const _contacts = CONTACTDATA;
   return (
-    <div className="flex flex-col p-10">
+    <div className="flex flex-col md:p-10 p-5 bg-white md:bg-auto">
       {/* First row */}
-      <section className="flex items-start justify-between">
+      <section className="flex flex-col md:flex-row md:items-start md:justify-between">
         {/* Cards */}
-        <div className="flex flex-col w-[60%] ">
+        <div className="flex flex-col md:w-[60%] ">
           {/* Headings */}
           <div className="flex justify-between items-center">
             <span className="heading-2 mb-3">My Cards</span>
@@ -25,7 +25,7 @@ function Dashboard() {
             </Link>
           </div>
           {/* Content */}
-          <div className="flex items-center flex-nowrap overflow-x-scroll no-scrollbar">
+          <div className="flex items-center overflow-y-none overflow-x-scroll no-scrollbar">
             {_cards.map((object, index) => (
               <Card
                 customStyles={{ marginRight: "20px" }}
@@ -36,7 +36,7 @@ function Dashboard() {
           </div>
         </div>
         {/* Recent Transactions */}
-        <div className="flex flex-col w-[35%]">
+        <div className="mt-10 md:mt-0 flex flex-col md:w-[35%]">
           {/* Headings */}
           <div className="flex justify-between items-center">
             <span className="heading-2 mb-3">Recent Transaction</span>
@@ -52,9 +52,9 @@ function Dashboard() {
       </section>
 
       {/* Second row */}
-      <section className="flex items-start justify-between mt-7">
+      <section className="flex flex-col md:flex-row md:items-start md:justify-between mt-7">
         {/* Weekly Activity */}
-        <div className="flex flex-col w-[60%]">
+        <div className="flex flex-col md:w-[60%]">
           {/* Headings */}
           <div className="flex justify-between items-center">
             <span className="heading-2 mb-3">Weekly Activity</span>
@@ -64,8 +64,8 @@ function Dashboard() {
             <WeeklyActivity />
           </div>
         </div>
-        {/* Recent Transactions */}
-        <div className="flex flex-col w-[35%]">
+        {/* Expense Statistics */}
+        <div className="mt-10 md:mt-0 flex flex-col md:w-[35%]">
           {/* Headings */}
           <div className="flex justify-between items-center">
             <span className="heading-2 mb-3">Expense Statistics</span>
@@ -78,9 +78,9 @@ function Dashboard() {
       </section>
 
       {/* Third row */}
-      <section className="flex items-start justify-between mt-7">
+      <section className="flex flex-col md:flex-row md:items-start md:justify-between mt-7">
         {/* Quick Transfer */}
-        <div className="flex flex-col w-[35%]">
+        <div className="flex flex-col md:w-[35%]">
           {/* Headings */}
           <div className="flex justify-between items-center">
             <span className="heading-2 mb-3">Quick Transfer</span>
@@ -112,7 +112,7 @@ function Dashboard() {
           </div>
         </div>
         {/* Balance History */}
-        <div className="flex flex-col w-[60%]">
+        <div className="mt-10 md:mt-0 flex flex-col md:w-[60%]">
           {/* Headings */}
           <div className="flex justify-between items-center">
             <span className="heading-2 mb-3">Balance History</span>

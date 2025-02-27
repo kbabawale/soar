@@ -7,7 +7,7 @@ function Topnav() {
   return (
     <div className="">
       {!isOpen && (
-        <div className="bg-white flex flex-col py-6 px-10 border-b border-[#E6EFF5]">
+        <div className="bg-white flex flex-col py-6 px-5 md:px-10 md:border-b md:border-[#E6EFF5]">
           <nav className=" flex items-center justify-between ">
             <img
               onClick={() => setOpen(!isOpen)}
