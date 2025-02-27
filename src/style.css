@@ -19,8 +19,8 @@
         @apply font-semibold text-lg text-c-primary;
     }
 
-    a, Link{
-        @apply hover:brightness-[110%] active:brightness-[80%];
+    a, Link, button{
+        @apply hover:brightness-[110%] active:brightness-[80%] cursor-pointer;
     }
 
     canvas{

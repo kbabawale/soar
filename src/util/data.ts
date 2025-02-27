@@ -1,4 +1,5 @@
-import { CardProps, Menu, TransactionProps } from "./model";
+import { ScriptableContext } from "chart.js/auto";
+import { CardProps, ContactProps, Menu, TransactionProps } from "./model";
 
 export const MENUITEMS: Menu[] = [
   {
@@ -146,6 +147,27 @@ export const WEEKLYACTIVITYDATA = {
   ],
 };
 
+export const BALANCEHISTORYDATA = {
+  labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"],
+
+  datasets: [
+    {
+      data: [150, 350, 320, 460, 150, 390, 395],
+      borderColor: "#1814F3",
+      fill: true,
+      borderRadius: 15,
+      backgroundColor: (context: ScriptableContext<"line">) => {
+        const ctx = context.chart.ctx;
+        const gradient = ctx.createLinearGradient(0, 0, 0, 150);
+        gradient.addColorStop(0, "rgba(45,96,255,50)");
+        gradient.addColorStop(1, "rgba(255,255,255,0)");
+        return gradient;
+      },
+      tension: 0.5,
+    },
+  ],
+};
+
 export const EXPENSESDATA = {
   labels: ["Entertainment", "Bill Expense", "Investments", "Others"],
 
@@ -162,3 +184,31 @@ export const EXPENSESDATA = {
     },
   ],
 };
+
+export const CONTACTDATA: ContactProps[] = [
+  {
+    image: "/ceo.svg",
+    name: "Livia Bator",
+    role: "CEO",
+  },
+  {
+    image: "/ceo.svg",
+    name: "Randy Press",
+    role: "Director",
+  },
+  {
+    image: "/ceo.svg",
+    name: "Workman Teal",
+    role: "Designer",
+  },
+  {
+    image: "/ceo.svg",
+    name: "Workman Teal",
+    role: "Designer",
+  },
+  {
+    image: "/ceo.svg",
+    name: "Workman Teal",
+    role: "Designer",
+  },
+];

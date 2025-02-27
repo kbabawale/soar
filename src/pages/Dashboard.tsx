@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import Card from "../components/Card.component";
-import { CARDS, TRANSACTIONS } from "../util/data";
+import { CARDS, CONTACTDATA, TRANSACTIONS } from "../util/data";
 import Transaction from "../components/Transaction.component";
 import WeeklyActivity from "../components/WeeklyActivity.component";
 import ExpenseStatistics from "../components/ExpenseStatistics.component";
+import Contact from "../components/Contact.component";
+import BalanceHistory from "../components/BalanceHistory.component";
 
 function Dashboard() {
   const _cards = CARDS;
   const _transactions = TRANSACTIONS;
+  const _contacts = CONTACTDATA;
   return (
     <div className="flex flex-col p-10">
       {/* First row */}
@@ -70,6 +73,53 @@ function Dashboard() {
           {/* Content */}
           <div className="h-[350px] flex items-center justify-center  bg-white rounded-3xl p-5">
             <ExpenseStatistics />
+          </div>
+        </div>
+      </section>
+
+      {/* Third row */}
+      <section className="flex items-start justify-between mt-7">
+        {/* Quick Transfer */}
+        <div className="flex flex-col w-[35%]">
+          {/* Headings */}
+          <div className="flex justify-between items-center">
+            <span className="heading-2 mb-3">Quick Transfer</span>
+          </div>
+          {/* Content */}
+          <div className="bg-white w-full h-[250px] py-6 rounded-3xl flex flex-col justify-evenly">
+            <div className="flex flex-nowrap overflow-x-scroll no-scrollbar">
+              {_contacts.map((object, index) => (
+                <Contact {...object} key={index} />
+              ))}
+            </div>
+            <div className="flex items-center justify-between px-6 w-full">
+              <span className="text-c-alt text-sm">Write amount</span>
+              <div className=" bg-c-dark-ash rounded-3xl w-[60%] flex items-center justify-between">
+                <input
+                  type="text"
+                  placeholder="500.00"
+                  inputMode="numeric"
+                  className="text-c-alt w-[45%] text-sm px-5 outline-0"
+                />
+                <button
+                  className="text-white text-sm bg-c-secondary w-[50%] max-w-[100px] rounded-3xl flex items-center justify-evenly p-2"
+                  type="submit"
+                >
+                  Send <img src="/send.svg" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Balance History */}
+        <div className="flex flex-col w-[60%]">
+          {/* Headings */}
+          <div className="flex justify-between items-center">
+            <span className="heading-2 mb-3">Balance History</span>
+          </div>
+          {/* Content */}
+          <div className="h-[250px] flex flex-col  bg-white rounded-3xl p-5">
+            <BalanceHistory />
           </div>
         </div>
       </section>

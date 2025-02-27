@@ -34,7 +34,10 @@ const options = {
     },
     y: {
       grid: {
-        drawOnChartArea: false,
+        drawOnChartArea: true,
+      },
+      ticks: {
+        stepSize: 100,
       },
     },
   },

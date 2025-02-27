@@ -26,3 +26,9 @@ export type TransactionProps = {
   debit: boolean;
   createdAt: string;
 };
+
+export type ContactProps = {
+  name: string;
+  image: string;
+  role: string;
+};
