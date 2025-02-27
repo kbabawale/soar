@@ -1,7 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { Menu } from "../util/model";
+import { useSidebarStore } from "../store/sidebar.store";
 
 const SideMenuItem = ({ filledIcon, unfilledIcon, label, route }: Menu) => {
+  const setOpen = useSidebarStore((state) => state.toggleFn);
   const location = useLocation();
   const currentRouteActive = (currentRoute: string): boolean => {
     if (currentRoute === location.pathname) return true;
@@ -11,7 +13,7 @@ const SideMenuItem = ({ filledIcon, unfilledIcon, label, route }: Menu) => {
   const isCurrentRoute = currentRouteActive(route);
 
   return (
-    <Link to={route} title={label}>
+    <Link onClick={setOpen} to={route} title={label}>
       <div aria-label={label} className="flex items-center h-14">
         <div className="hidden md:block w-[20%]">
           {isCurrentRoute && (
