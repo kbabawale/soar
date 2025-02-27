@@ -1,3 +1,5 @@
+import { InputHTMLAttributes } from "react";
+
 export class UtilFunction {
   /**
    * Converts a full date string to MM/YY
@@ -51,5 +53,26 @@ export class UtilFunction {
       day: "numeric",
       year: "numeric",
     });
+  };
+
+  static flattenArrayToObj = (
+    arr: InputHTMLAttributes<unknown>[] | undefined
+  ) => {
+    // eslint-disable-next-line
+    const obj: any = {};
+
+    if (arr) {
+      for (let i = 0; i < arr.length; i++) {
+        // eslint-disable-next-line
+        const o: any = arr[i];
+        for (const key in o) {
+          if (typeof o[key] != "function") {
+            obj[key] = o[key];
+          }
+        }
+      }
+    }
+
+    return obj;
   };
 }

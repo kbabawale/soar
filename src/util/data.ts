@@ -1,5 +1,11 @@
 import { ScriptableContext } from "chart.js/auto";
-import { CardProps, ContactProps, Menu, TransactionProps } from "./model";
+import {
+  CardProps,
+  ContactProps,
+  Menu,
+  TabItemProps,
+  TransactionProps,
+} from "./model";
 
 export const MENUITEMS: Menu[] = [
   {
@@ -210,5 +216,23 @@ export const CONTACTDATA: ContactProps[] = [
     image: "/ceo.svg",
     name: "Workman Teal",
     role: "Designer",
+  },
+];
+
+export const TABSDATA: TabItemProps[] = [
+  {
+    active: true,
+    label: "Edit Profile",
+    id: 1,
+  },
+  {
+    id: 2,
+    active: false,
+    label: "Preferences",
+  },
+  {
+    id: 3,
+    active: false,
+    label: "Security",
   },
 ];
