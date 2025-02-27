@@ -42,7 +42,7 @@ function Dashboard() {
             <span className="heading-2 mb-3">Recent Transaction</span>
           </div>
           {/* Content */}
-          <div className="h-[240px] flex flex-col justify-center space-y-4 bg-white rounded-3xl p-5">
+          <div className="border h-[240px] flex flex-col justify-center space-y-4 bg-white rounded-3xl py-5">
             {/* Transaction */}
             {_transactions.map((object, index) => (
               <Transaction {...object} key={index} />

@@ -32,7 +32,7 @@ const Transaction = ({
           />
         </div>
       </div>
-      <div className="flex flex-col w-full pl-5">
+      <div className="flex flex-col grow pl-5">
         <span className="text-base font-medium">{narration}</span>
         <span className="text-c-alt text-sm">
           {UtilFunction.formatDate(createdAt)}
