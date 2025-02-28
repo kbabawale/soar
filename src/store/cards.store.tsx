@@ -31,7 +31,7 @@ export const useCardStore = create<CardStore>((set) => ({
 }));
 
 const mockAPIURL =
-  "https://run.mocky.io/v3/b39ae3c2-70ab-4a35-92b4-6967b3e56951";
+  "https://run.mocky.io/v3/10264810-6323-4005-9604-07c4645f0282";
 
 const fetchCardFromAPI = async () => {
   delay(5000);
