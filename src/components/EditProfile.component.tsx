@@ -1,16 +1,25 @@
-import { useEffect, useRef } from "react";
+import { BaseSyntheticEvent, useEffect, useRef, useState } from "react";
 import FormElement from "./FormElement.component";
 import { EditProfileFormType } from "../util/model";
 import { useForm } from "react-hook-form";
 import { useUserStore } from "../store/user.store";
 
 const EditProfile = () => {
+  const [profileImage, setprofileImage] = useState("/profile.svg");
   const inputFileRef = useRef<HTMLInputElement>(null);
   const fetchUser = useUserStore((state) => state.fetchUser);
   const userData = useUserStore((state) => state.data);
 
-  const onFileChange = () => {
-    alert("Uploading...");
+  const onFileChange = (e: BaseSyntheticEvent) => {
+    const uploaded = e.target.files;
+
+    if (FileReader && uploaded && uploaded.length) {
+      const fr = new FileReader();
+      fr.onload = function () {
+        setprofileImage(fr.result as string);
+      };
+      fr.readAsDataURL(uploaded[0]);
+    }
   };
 
   const triggerDialog = () => {
@@ -55,8 +64,8 @@ const EditProfile = () => {
           {/* Avatar */}
           <div className="flex">
             <img
-              src="/profile.svg"
-              className="rounded-full w-[100px] h-[100px]"
+              src={profileImage}
+              className="rounded-full w-[100px] h-[100px] object-contain"
             />
             <img
               onClick={triggerDialog}
@@ -212,6 +221,7 @@ const EditProfile = () => {
           Save
         </button>
         <input
+          accept="image/png, image/gif, image/jpeg"
           onChange={onFileChange}
           ref={inputFileRef}
           className="hidden"

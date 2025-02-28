@@ -19,6 +19,7 @@ interface UserStore {
   error: boolean;
   errorData: string | null;
   fetchUser?: () => void;
+  setProfileImage?: (input: string) => void;
 }
 
 const initialData: UserStore = {
