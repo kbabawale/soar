@@ -52,6 +52,7 @@ export type DropdownOptions = {
 };
 export type FormElementProps = {
   id: string;
+  value?: string | number;
   placeholder?: string;
   error?: boolean;
   errorMessage?: string;

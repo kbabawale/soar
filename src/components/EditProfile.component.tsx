@@ -1,10 +1,13 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import FormElement from "./FormElement.component";
 import { EditProfileFormType } from "../util/model";
 import { useForm } from "react-hook-form";
+import { useUserStore } from "../store/user.store";
 
 const EditProfile = () => {
   const inputFileRef = useRef<HTMLInputElement>(null);
+  const fetchUser = useUserStore((state) => state.fetchUser);
+  const userData = useUserStore((state) => state.data);
 
   const onFileChange = () => {
     alert("Uploading...");
@@ -25,6 +28,25 @@ const EditProfile = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<EditProfileFormType>();
+
+  useEffect(() => {
+    if (!userData.name) fetchUser?.();
+  }, []);
+
+  useEffect(() => {
+    if (userData.username) setValue("username", userData.username);
+    if (userData.name) setValue("name", userData.name);
+    if (userData.password) setValue("password", userData.password);
+    if (userData.dateOfBirth) setValue("dateOfBirth", userData.dateOfBirth);
+    if (userData.city) setValue("city", userData.city);
+    if (userData.email) setValue("email", userData.email);
+    if (userData.postalCode) setValue("postalCode", userData.postalCode);
+    if (userData.country) setValue("country", userData.country);
+    if (userData.presentAddress)
+      setValue("presentAddress", userData.presentAddress);
+    if (userData.permanentAddress)
+      setValue("permanentAddress", userData.permanentAddress);
+  }, [userData]);
 
   return (
     <form>
