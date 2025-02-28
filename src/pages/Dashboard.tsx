@@ -1,14 +1,26 @@
 import { Link } from "react-router-dom";
 import Card from "../components/Card.component";
-import { CARDS, CONTACTDATA, TRANSACTIONS } from "../util/data";
+import { CONTACTDATA, TRANSACTIONS } from "../util/data";
 import Transaction from "../components/Transaction.component";
 import WeeklyActivity from "../components/WeeklyActivity.component";
 import ExpenseStatistics from "../components/ExpenseStatistics.component";
 import Contact from "../components/Contact.component";
 import BalanceHistory from "../components/BalanceHistory.component";
+import { useEffect } from "react";
+import { useCardStore } from "../store/cards.store";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function Dashboard() {
-  const _cards = CARDS;
+  const fetchCards = useCardStore((state) => state.fetchCards);
+  const cards = useCardStore((state) => state.data);
+  // const error = useCardStore((state) => state.error);
+  const loading = useCardStore((state) => state.loading);
+
+  useEffect(() => {
+    if (cards.length === 0) fetchCards?.();
+  }, []);
+
   const _transactions = TRANSACTIONS;
   const _contacts = CONTACTDATA;
   return (
@@ -25,15 +37,20 @@ function Dashboard() {
             </Link>
           </div>
           {/* Content */}
-          <div className="flex items-center overflow-y-none overflow-x-scroll no-scrollbar">
-            {_cards.map((object, index) => (
-              <Card
-                customStyles={{ marginRight: "20px" }}
-                {...object}
-                key={index}
-              />
-            ))}
-          </div>
+          {cards && (
+            <div className="flex items-center overflow-y-none overflow-x-scroll no-scrollbar">
+              {cards.map((object, index) => (
+                <Card
+                  customStyles={{ marginRight: "20px" }}
+                  {...object}
+                  key={index}
+                />
+              ))}
+            </div>
+          )}
+          {loading && (
+            <Skeleton containerClassName="flex-1" style={{ height: "200px" }} />
+          )}
         </div>
         {/* Recent Transactions */}
         <div className="mt-10 md:mt-0 flex flex-col md:w-[35%]">
