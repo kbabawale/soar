@@ -10,7 +10,9 @@ import {
   PointElement,
   LineElement,
 } from "chart.js/auto";
-import { WEEKLYACTIVITYDATA } from "../util/data";
+import { useWeeklyActivityStore } from "../store/weeklyActivity.store";
+import Skeleton from "react-loading-skeleton";
+import { useEffect } from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -52,9 +54,41 @@ const options = {
   },
 };
 
-const _data = WEEKLYACTIVITYDATA;
-
 const WeeklyActivity = () => {
+  const fetchFn = useWeeklyActivityStore((state) => state.fetchActivity);
+  const activity = useWeeklyActivityStore((state) => state.data);
+  const loading = useWeeklyActivityStore((state) => state.loading);
+
+  const _data = {
+    labels: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+    datasets: [
+      {
+        label: "Withdraw",
+        data: activity?.withdrawal,
+        borderColor: "#232323",
+        fill: true,
+        borderRadius: 15,
+        barPercentage: 0.5,
+        backgroundColor: "#232323",
+        tension: 0.5,
+      },
+      {
+        label: "Deposit",
+        data: activity?.deposits,
+        fill: true,
+        borderRadius: 15,
+        barPercentage: 0.5,
+        borderColor: "#396AFF",
+        backgroundColor: "#396AFF",
+        tension: 0.5,
+      },
+    ],
+  };
+
+  useEffect(() => {
+    if (!activity?.deposits || !activity?.withdrawal) fetchFn?.();
+  }, []);
+
   return (
     <div className="bg-white w-full h-[350px] flex flex-col p-6 rounded-3xl">
       <div className="flex items-center justify-end space-x-2">
@@ -64,7 +98,12 @@ const WeeklyActivity = () => {
         <span className="text-c-alt text-sm">Withdraw</span>
       </div>
 
-      <Bar options={options} data={_data} />
+      {loading && (
+        <Skeleton containerClassName="flex-1" style={{ height: "350px" }} />
+      )}
+      {!loading && activity?.deposits && activity.withdrawal && (
+        <Bar options={options} data={_data} />
+      )}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Card from "../components/Card.component";
-import { CONTACTDATA, TRANSACTIONS } from "../util/data";
+import { CONTACTDATA } from "../util/data";
 import Transaction from "../components/Transaction.component";
 import WeeklyActivity from "../components/WeeklyActivity.component";
 import ExpenseStatistics from "../components/ExpenseStatistics.component";
@@ -10,18 +10,24 @@ import { useEffect } from "react";
 import { useCardStore } from "../store/cards.store";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useTransactionStore } from "../store/transactions.store";
 
 function Dashboard() {
   const fetchCards = useCardStore((state) => state.fetchCards);
+  const fetchTransactions = useTransactionStore(
+    (state) => state.fetchTransactions
+  );
+  const transactions = useTransactionStore((state) => state.data);
+  const transactionLoading = useTransactionStore((state) => state.loading);
   const cards = useCardStore((state) => state.data);
   // const error = useCardStore((state) => state.error);
-  const loading = useCardStore((state) => state.loading);
+  const cardsLoading = useCardStore((state) => state.loading);
 
   useEffect(() => {
     if (cards.length === 0) fetchCards?.();
+    if (transactions.length === 0) fetchTransactions?.();
   }, []);
 
-  const _transactions = TRANSACTIONS;
   const _contacts = CONTACTDATA;
   return (
     <div className="flex flex-col md:p-10 p-5 bg-white md:bg-auto">
@@ -32,12 +38,12 @@ function Dashboard() {
           {/* Headings */}
           <div className="flex justify-between items-center">
             <span className="heading-2 mb-3">My Cards</span>
-            <Link to="/">
+            <Link onClick={() => alert("See all")} to="/">
               <span className="heading-3">See All</span>
             </Link>
           </div>
           {/* Content */}
-          {cards && (
+          {cards.length > 0 && (
             <div className="flex items-center overflow-y-none overflow-x-scroll no-scrollbar">
               {cards.map((object, index) => (
                 <Card
@@ -48,7 +54,7 @@ function Dashboard() {
               ))}
             </div>
           )}
-          {loading && (
+          {cardsLoading && (
             <Skeleton containerClassName="flex-1" style={{ height: "200px" }} />
           )}
         </div>
@@ -59,12 +65,16 @@ function Dashboard() {
             <span className="heading-2 mb-3">Recent Transaction</span>
           </div>
           {/* Content */}
-          <div className=" h-[240px] flex flex-col justify-center space-y-4 bg-white rounded-3xl py-5">
-            {/* Transaction */}
-            {_transactions.map((object, index) => (
-              <Transaction {...object} key={index} />
-            ))}
-          </div>
+          {transactions.length > 0 && (
+            <div className=" h-[240px] flex flex-col justify-center space-y-4 bg-white rounded-3xl py-5">
+              {transactions.map((object, index) => (
+                <Transaction {...object} key={index} />
+              ))}
+            </div>
+          )}
+          {transactionLoading && (
+            <Skeleton containerClassName="flex-1" style={{ height: "200px" }} />
+          )}
         </div>
       </section>
 

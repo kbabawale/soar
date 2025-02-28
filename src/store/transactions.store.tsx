@@ -1,27 +1,27 @@
 import { create } from "zustand";
-import { CardProps } from "../util/model";
+import { TransactionProps } from "../util/model";
 
-interface CardStore {
-  data: CardProps[];
+interface TransactionStore {
+  data: TransactionProps[];
   loading: boolean;
   error: boolean;
   errorData: string | null;
-  fetchCards?: () => void;
+  fetchTransactions?: () => void;
 }
 
-const initialData: CardStore = {
+const initialData: TransactionStore = {
   data: [],
   loading: false,
   error: false,
   errorData: null,
 };
 
-export const useCardStore = create<CardStore>((set) => ({
+export const useTransactionStore = create<TransactionStore>((set) => ({
   ...initialData,
-  fetchCards: async () => {
+  fetchTransactions: async () => {
     set({ ...initialData, loading: true });
     try {
-      const res = await fetchCardFromAPI();
+      const res = await fetchTransactionFromAPI();
       set({ ...initialData, loading: false, data: res });
     } catch (err: unknown) {
       const msg = err && err instanceof Error ? err.message : "";
@@ -31,10 +31,10 @@ export const useCardStore = create<CardStore>((set) => ({
 }));
 
 const mockAPIURL =
-  "https://run.mocky.io/v3/10264810-6323-4005-9604-07c4645f0282";
+  "https://run.mocky.io/v3/63cd77e8-e705-43c0-b50e-7422f4160748";
 
-const fetchCardFromAPI = async () => {
-  await delay(5000);
+const fetchTransactionFromAPI = async () => {
+  await delay(15000);
   const http = await fetch(mockAPIURL)
     .then((res) => res.json())
     .then((data) => data.data);

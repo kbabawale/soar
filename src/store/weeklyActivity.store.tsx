@@ -1,27 +1,31 @@
 import { create } from "zustand";
-import { CardProps } from "../util/model";
 
-interface CardStore {
-  data: CardProps[];
+type WeeklyActivityResponse = {
+  deposits: number[];
+  withdrawal: number[];
+};
+
+interface WeeklyActivityStore {
+  data: WeeklyActivityResponse | null;
   loading: boolean;
   error: boolean;
   errorData: string | null;
-  fetchCards?: () => void;
+  fetchActivity?: () => void;
 }
 
-const initialData: CardStore = {
-  data: [],
+const initialData: WeeklyActivityStore = {
+  data: null,
   loading: false,
   error: false,
   errorData: null,
 };
 
-export const useCardStore = create<CardStore>((set) => ({
+export const useWeeklyActivityStore = create<WeeklyActivityStore>((set) => ({
   ...initialData,
-  fetchCards: async () => {
+  fetchActivity: async () => {
     set({ ...initialData, loading: true });
     try {
-      const res = await fetchCardFromAPI();
+      const res = await fetchWeeklyActivityFromAPI();
       set({ ...initialData, loading: false, data: res });
     } catch (err: unknown) {
       const msg = err && err instanceof Error ? err.message : "";
@@ -31,10 +35,10 @@ export const useCardStore = create<CardStore>((set) => ({
 }));
 
 const mockAPIURL =
-  "https://run.mocky.io/v3/10264810-6323-4005-9604-07c4645f0282";
+  "https://run.mocky.io/v3/3037e74a-3948-40bd-97d2-b15350938cdc";
 
-const fetchCardFromAPI = async () => {
-  await delay(5000);
+const fetchWeeklyActivityFromAPI = async () => {
+  await delay(3000);
   const http = await fetch(mockAPIURL)
     .then((res) => res.json())
     .then((data) => data.data);
