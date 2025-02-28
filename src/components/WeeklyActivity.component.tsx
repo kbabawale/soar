@@ -99,7 +99,7 @@ const WeeklyActivity = () => {
       </div>
 
       {loading && (
-        <Skeleton containerClassName="flex-1" style={{ height: "350px" }} />
+        <Skeleton containerClassName="flex-1" style={{ height: "300px" }} />
       )}
       {!loading && activity?.deposits && activity.withdrawal && (
         <Bar options={options} data={_data} />
